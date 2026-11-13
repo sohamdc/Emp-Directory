@@ -7,34 +7,47 @@ interface Props {
 }
 
 function EmployeeTable({ employees, onEdit, onDelete }: Props) {
- if (employees.length === 0) return <p>No employees found.</p>;
+  if (employees.length === 0) return <p className="empty">No employees found.</p>;
 
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Role</th>
-          <th>Created</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        {employees.map((emp) => (
-          <tr key={emp.id}>
-            <td>{emp.name}</td>
-            <td>{emp.email}</td>
-            <td>{emp.role}</td>
-            <td>{new Date(emp.created_at).toLocaleDateString()}</td>
-            <td>
-              <button onClick={() => onEdit(emp)}>Edit</button>
-              <button className="danger" onClick={() => onDelete(emp.id)}>Delete</button>
-            </td>
+    <div className="table-wrap">
+      <table>
+
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Role</th>
+            <th>Created</th>
+            <th></th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+
+
+        <tbody>
+          {employees.map((emp) => (
+            <tr key={emp.id}>
+              <td>
+                <div className="person">
+                  <span className="avatar">{emp.name.charAt(0).toUpperCase()}</span>
+                  <div>
+                    <div className="person-name">{emp.name}</div>
+                    <div className="person-email">{emp.email}</div>
+                  </div>
+                </div>
+              </td>
+              <td><span className="badge">{emp.role}</span></td>
+              <td className="muted">{new Date(emp.created_at).toLocaleDateString()}</td>
+              <td className="actions">
+                <button className="ghost" onClick={() => onEdit(emp)}>Edit</button>
+                <button className="ghost danger" onClick={() => onDelete(emp.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+
+        
+      </table>
+    </div>
   );
 }
 

@@ -45,15 +45,24 @@ function EmployeeForm({ editing, onSubmit, onCancel }: Props) {
 
 
   
-  return (
-    <form className="form" onSubmit={handleSubmit}>
+    return (
+    <form className={`card form ${editing ? 'editing' : ''}`} onSubmit={handleSubmit}>
       <h2>{editing ? 'Edit Employee' : 'Add Employee'}</h2>
-      <input name="name" placeholder="Name" value={form.name} onChange={handleChange} required />
-      <input name="email" type="email" placeholder="Email" value={form.email} onChange={handleChange} required />
-      <input name="role" placeholder="Role" value={form.role} onChange={handleChange} required />
+      <label>
+        Name
+        <input name="name" placeholder="Jane Doe" value={form.name} onChange={handleChange} required />
+      </label>
+      <label>
+        Email
+        <input name="email" type="email" placeholder="jane@company.com" value={form.email} onChange={handleChange} required />
+      </label>
+      <label>
+        Role
+        <input name="role" placeholder="Frontend Developer" value={form.role} onChange={handleChange} required />
+      </label>
       {error && <p className="error">{error}</p>}
       <div className="form-actions">
-        <button type="submit">{editing ? 'Update' : 'Add'}</button>
+        <button type="submit">{editing ? 'Update' : 'Add Employee'}</button>
         {editing && <button type="button" className="secondary" onClick={onCancel}>Cancel</button>}
       </div>
     </form>
