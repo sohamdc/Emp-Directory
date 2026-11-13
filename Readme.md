@@ -40,3 +40,8 @@ npm run dev
 ```
 
 Runs at http://localhost:5173
+
+
+## Screenshot
+
+![Employee Directory](screenshots/home.png)
